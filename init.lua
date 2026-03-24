@@ -16,32 +16,37 @@
 
 local plop = {}
 local git = require("git")
+local openai = require("openai")
 
 --- Initialize the plop module
 -- @param options table Optional configuration options
 -- @return table The plop module
 function plop.init(options)
-    if options and options.cwd then
-        git.set_cwd(options.cwd)
+    if options then
+        git.init(options.git)
+        openai.init(options.openai)
     end
-    print("plop initialized")
     return plop
-end
-
---- Generate insights from a git repository
--- @param repo_path string The path to the git repository
--- @return string Insights generated from the repository
-function plop.generate_insights(repo_path)
-    -- Placeholder for AI logic
-    return "Insights for repository at " .. repo_path
 end
 
 --- Create a summary from a git repository
 -- @param repo_path string The path to the git repository
 -- @return string Summary generated from the repository
-function plop.create_summary(repo_path)
-    -- Placeholder for AI logic
-    return "Summary for repository at " .. repo_path
+function plop.create_staged_summary()
+    local diff = git.diff_staged()
+    local response = openai.chat_completion({
+        {
+            role = "system",
+            content = "Provide a concise summary of the following git diff"
+        },
+        {
+            role = "user",
+            content = diff
+        },
+        "devstral-small-2-q4"
+    })
+
+    return response.choices[0]
 end
 
 --- Get the diff of all staged changes

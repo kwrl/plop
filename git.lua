@@ -17,16 +17,10 @@
 local git = {}
 local cwd = nil
 
---- Set the working directory for git commands
--- @param path string The path to set as the working directory
-function git.set_cwd(path)
-    cwd = path
-end
-
---- Get the current working directory for git commands
--- @return string The current working directory
-function git.get_cwd()
-    return cwd
+function git.init(options)
+    if options then
+        cwd = options.cwd or "."
+    end
 end
 
 --- Execute a git command with the configured working directory

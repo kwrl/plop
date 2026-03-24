@@ -22,4 +22,7 @@ data/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db
+Thumbs.db/luarocks
+/lua
+/lua_modules
+/.luarocks
