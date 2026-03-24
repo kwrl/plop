@@ -34,7 +34,7 @@ local function main()
     
     plop.init({ cwd = args.repository })
     
-    local diff = plop.diff_staged()
+    local diff = plop.diff_uncommitted()
     print(diff)
 end
 

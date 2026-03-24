@@ -1,5 +1,5 @@
 package = "plop"
-version = "0.1.0"
+version = "0.1.0-1"
 source = {
    url = "git://github.com/user/plop.git"
 }
@@ -12,7 +12,8 @@ A tool that uses AI to provide insights and summaries from git repositories.
    license = "GPL-3.0"
 }
 dependencies = {
-   "luasocket >= 3.0"
+   "luasocket >= 3.0",
+   "dkjson >= 2.5"
 }
 build = {
    type = "builtin",
