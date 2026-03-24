@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+
+# Lua-specific
+luarocks/
+
+# Environment files
+.env
+.env.local
+
+# Logs
+logs
+*.log
+
+# Runtime data
+data/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
