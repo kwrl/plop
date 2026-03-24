@@ -15,23 +15,43 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 local git = {}
+local cwd = nil
 
---- Get the diff of all staged changes
--- @return string The diff output of staged changes
-function git.diff_staged()
-    local handle = io.popen("git diff --cached --minimal")
+--- Set the working directory for git commands
+-- @param path string The path to set as the working directory
+function git.set_cwd(path)
+    cwd = path
+end
+
+--- Get the current working directory for git commands
+-- @return string The current working directory
+function git.get_cwd()
+    return cwd
+end
+
+--- Execute a git command with the configured working directory
+-- @param command string The git command to execute
+-- @return string The output of the command
+local function execute_git_command(command)
+    if cwd then
+        command = "cd " .. cwd .. " && " .. command
+    end
+    local handle = io.popen(command)
     local result = handle:read("*a")
     handle:close()
     return result
 end
 
+--- Get the diff of all staged changes
+-- @return string The diff output of staged changes
+function git.diff_staged()
+    return execute_git_command("git diff --cached --minimal")
+end
+
 --- Get the diff of all uncommitted changes
 -- @return string The diff output of uncommitted changes
 function git.diff_uncommitted()
-    local handle = io.popen("git diff --minimal")
-    local result = handle:read("*a")
-    handle:close()
-    return result
+    return execute_git_command("git diff --minimal")
 end
 
 return git

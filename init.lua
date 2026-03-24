@@ -18,8 +18,12 @@ local plop = {}
 local git = require("git")
 
 --- Initialize the plop module
+-- @param options table Optional configuration options
 -- @return table The plop module
-function plop.init()
+function plop.init(options)
+    if options and options.cwd then
+        git.set_cwd(options.cwd)
+    end
     print("plop initialized")
     return plop
 end
