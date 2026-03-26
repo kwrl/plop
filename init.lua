@@ -16,7 +16,7 @@
 
 local plop = {}
 local git = require("git")
-local openai = require("openai")
+local openai = require("openai_client")
 
 --- Initialize the plop module
 -- @param options table Optional configuration options
@@ -34,7 +34,7 @@ end
 -- @return string Summary generated from the repository
 function plop.create_staged_summary()
     local diff = git.diff_staged()
-    local response = openai.chat_completion({
+    local messages = {
         {
             role = "system",
             content = "Provide a concise summary of the following git diff"
@@ -42,11 +42,15 @@ function plop.create_staged_summary()
         {
             role = "user",
             content = diff
-        },
-        "devstral-small-2-q4"
-    })
+        }
+    };
 
-    return response.choices[0]
+    local response = openai.chat_completion(
+        messages,
+        "ministral-3:8b"
+    )
+
+    return response
 end
 
 --- Get the diff of all staged changes

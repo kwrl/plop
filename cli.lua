@@ -1,9 +1,5 @@
---
-
 local plop = require("init")
 
---- Parse command-line arguments
--- @return table The parsed arguments
 local function parse_args()
     local args = {}
     for i, arg_value in ipairs(arg) do
@@ -22,8 +18,8 @@ local function main()
             cwd = args.repository
         },
         openai = {
-            base_url = "TODO",
-            bearer_token = "TODO"
+            base_url = "todo",
+            bearer_token = "todo"
         }
     })
     local summary = plop.create_staged_summary()
