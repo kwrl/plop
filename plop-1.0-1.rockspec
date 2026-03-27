@@ -1,7 +1,7 @@
 package = "plop"
 version = "1.0-1"
 source = {
-    url = "./plop-scm-1.src.rock"
+    url = "git+https://github.com/kwrl/plop"
 }
 description = {
     summary = "Plop is an AI-powered tool for generating insights and summaries from git repositories",
