@@ -24,6 +24,12 @@ This document provides guidelines and commands for agentic coding tools operatin
   busted path/to/test_file.lua
   ```
 
+## Rockspec File
+- **Rockspec location**: `/home/hkaurel/Code/plop/plop-scm-1.rockspec`
+- **Dependencies**: 
+  - `lua-cjson >= 1.0.0`
+  - `luasocket >= 3.0`
+
 ## Code Style Guidelines
 
 ### Imports
