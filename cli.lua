@@ -18,8 +18,8 @@ local function main()
             cwd = args.repository
         },
         openai = {
-            base_url = "todo",
-            bearer_token = "todo"
+            base_url = os.getenv("PLOP_OPENAI_BASEURL"),
+            bearer_token = os.getenv("PLOP_OPENAI_BEARERTOKEN")
         }
     })
     local summary = plop.create_staged_summary()

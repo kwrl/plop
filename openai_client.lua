@@ -7,10 +7,12 @@ local openai = {}
 
 local base_url = nil
 local bearer_token = nil
+local default_model = nil
 
 function openai.init(options)
-    base_url = options.base_url or "https://api.openai.com/v1"
-    bearer_token = options.bearer_token
+    base_url = options.base_url or "https://api.openai.com"
+    bearer_token = options.bearer_token or "THIS_IS_CLEARLY_NOT_VALID"
+    default_model = options.default_model or "ministral-3:8b"
 end
 
 function openai.chat_completion(messages, model)
@@ -18,7 +20,7 @@ function openai.chat_completion(messages, model)
         error("OpenAI module not initialized. Call openai.init() first.")
     end
     local request_body = {
-        model = model or "gpt-3.5-turbo",
+        model = model or default_model,
         messages = messages
     }
     local request_json = cjson.encode(request_body)
