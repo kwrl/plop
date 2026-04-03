@@ -15,8 +15,8 @@ dependencies = {
 build = {
     type = "builtin",
     modules = {
-        ["plop"] = "init.lua",
-        ["plop.git"] = "git.lua",
-        ["plop.openai_client"] = "openai_client.lua"
+        ["plop"] = "src/init.lua",
+        ["plop.git"] = "src/git.lua",
+        ["plop.openai_client"] = "src/openai_client.lua"
     }
 }
